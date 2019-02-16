@@ -30,6 +30,10 @@ app.get("/api/timestamp/:date_string", (req, res) => {
   res.json({ unix: date.getTime() ? date.getTime() : null , natural: date.toUTCString() , date_string:req.params.date_string});
 });
 
+app.get("/api/whoami", (req, res) => {
+  res.json({ipaddress: req.ip, language: req.get("Accept-Language"), software: req.get("User-Agent")});
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
